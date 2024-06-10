@@ -1,0 +1,17 @@
+body {
+    background-color: #f8f9fa;
+}
+
+h1 {
+    color: #343a40;
+}
+
+.risk {
+    cursor: pointer;
+}
+
+/* Estilo adicional para cambiar el cursor */
+.risk:hover {
+    cursor: pointer;
+    text-decoration: underline;  /* Opcional: añade un subrayado al pasar el mouse */
+}

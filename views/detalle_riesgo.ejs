@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle del Riesgo</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/styles/styles.css">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Detalle del Riesgo - <%= nivel %></h1>
+        <% if (nivel === 'Muy Alta') { %>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Valor</th>
+                        <th>Probabilidad de Incidente</th>
+                        <th>Impacto del Incidente</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>6</td>
+                        <td>Muy Alta</td>
+                        <td>Catastrófico</td>
+                        <td>El daño resultaría en pérdidas extremas, posiblemente permanentes, poniendo en riesgo la continuidad de la empresa.</td>
+                    </tr>
+                </tbody>
+            </table>
+        <% } else if (nivel === 'Alta') { %>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Valor</th>
+                        <th>Probabilidad de Incidente</th>
+                        <th>Impacto del Incidente</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>5</td>
+                        <td>Alta</td>
+                        <td>Muy Alto</td>
+                        <td>El daño sería grave e irreparable, afectando significativamente las operaciones o la imagen de la empresa.</td>
+                    </tr>
+                </tbody>
+            </table>
+        <% } else if (nivel === 'Media-Alta') { %>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Valor</th>
+                        <th>Probabilidad de Incidente</th>
+                        <th>Impacto del Incidente</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>4</td>
+                        <td>Media-Alta</td>
+                        <td>Alto</td>
+                        <td>El daño sería considerable, con impacto duradero en las operaciones y posibles secuelas legales o financieras.</td>
+                    </tr>
+                </tbody>
+            </table>
+        <% } else if (nivel === 'Media') { %>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Valor</th>
+                        <th>Probabilidad de Incidente</th>
+                        <th>Impacto del Incidente</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>3</td>
+                        <td>Media</td>
+                        <td>Medio</td>
+                        <td>El daño sería serio pero manejable, con posibles interrupciones temporales o pérdidas moderadas.</td>
+                    </tr>
+                </tbody>
+            </table>
+        <% } else if (nivel === 'Baja') { %>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Valor</th>
+                        <th>Probabilidad de Incidente</th>
+                        <th>Impacto del Incidente</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2</td>
+                        <td>Baja</td>
+                        <td>Bajo</td>
+                        <td>El daño sería menor, con impactos limitados en las operaciones diarias o en la reputación.</td>
+                    </tr>
+                </tbody>
+            </table>
+        <% } else if (nivel === 'Muy Baja') { %>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Valor</th>
+                        <th>Probabilidad de Incidente</th>
+                        <th>Impacto del Incidente</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Muy Baja</td>
+                        <td>Mínimo</td>
+                        <td>El daño sería insignificante, con impactos apenas perceptibles en las operaciones diarias.</td>
+                    </tr>
+                </tbody>
+            </table>
+        <% } %>
+        <div class="text-center mt-4">
+            <a href="/buscar?dominio=<%= dominio %>" class="btn btn-secondary">Volver a la búsqueda</a>
+        </div>
+    </div>
+</body>
+</html>

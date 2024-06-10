@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados de Subdominios</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/styles/styles.css">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Subdominios Encontrados</h1>
+        <ul class="list-group">
+            <% subdominios.forEach(function(subdominio) { %>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span><%= subdominio.subdomain %> - IP: <%= subdominio.ip %></span>
+                    <span class="badge badge-primary badge-pill risk" data-risk="<%= subdominio.riesgo %>" data-dominio="<%= dominio %>">Riesgo: <%= subdominio.riesgo %></span>
+                </li>
+            <% }) %>
+        </ul>
+        <div class="text-center mt-4">
+            <a href="/" class="btn btn-secondary">Volver a buscar</a>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/assets/js/scripts.js"></script>
+</body>
+</html>
