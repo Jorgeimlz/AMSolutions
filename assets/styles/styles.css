@@ -1,49 +1,50 @@
 body {
-    background-color: #36393f; /* Discord dark background color */
-    color: #ffffff; /* Discord text color */
+    background-color: #000000; /* Fondo oscuro de Discord */
+    color: #ffffff; /* Color de texto de Discord */
     font-family: Arial, sans-serif;
 }
 
 h1 {
-    color: #7289da; /* Discord blurple color */
+    color: #7289da; /* Color blurple de Discord */
 }
 
 .btn-primary {
-    background-color: #7289da; /* Discord blurple color */
-    border-color: #7289da; /* Discord blurple color */
-    color: #ffffff; /* White text */
+    background-color: #7289da; /* Color blurple de Discord */
+    border-color: #7289da; /* Color blurple de Discord */
+    color: #ffffff; /* Texto blanco */
 }
 
 .btn-primary:hover {
-    background-color: #5b6eae; /* Darker blurple on hover */
-    border-color: #5b6eae; /* Darker blurple on hover */
+    background-color: #5b6eae; /* Blurple más oscuro al pasar el ratón */
+    border-color: #5b6eae; /* Blurple más oscuro al pasar el ratón */
 }
 
 .form-control {
-    background-color: #40444b; /* Discord input background color */
-    color: #ffffff; /* White text */
-    border: 1px solid #2f3136; /* Border color similar to Discord */
+    background-color: #000000; /* Fondo negro */
+    color: #ffffff; /* Texto blanco */
+    border: 1px solid #7289da; /* Borde blurple de Discord */
+    box-shadow: 0 0 5px rgba(114, 137, 218, 0.5); /* Sombra blurple para destacar */
 }
 
 .form-control::placeholder {
-    color: #b9bbbe; /* Placeholder text color */
+    color: #b9bbbe; /* Color del texto del marcador de posición */
 }
 
 label {
-    color: #b9bbbe; /* Label text color */
+    color: #b9bbbe; /* Color del texto de las etiquetas */
 }
 
 .list-group-item {
-    background-color: #2f3136; /* List item background color */
-    border: 1px solid #23272a; /* Border color for list items */
+    background-color: #2f3136; /* Color de fondo de los elementos de la lista */
+    border: 1px solid #23272a; /* Color del borde de los elementos de la lista */
 }
 
 .list-group-item a {
-    color: #7289da; /* Link color */
+    color: #7289da; /* Color de los enlaces */
 }
 
 .list-group-item a:hover {
-    color: #5b6eae; /* Darker blurple on hover */
+    color: #5b6eae; /* Blurple más oscuro al pasar el ratón */
 }
 
 .risk {
@@ -54,3 +55,25 @@ label {
     text-decoration: underline;
 }
 
+.card {
+    border: none;
+    border-radius: 10px;
+    background-color: #2f3136; /* Color de fondo similar a Discord */
+    color: #ffffff; /* Texto blanco */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra para la tarjeta */
+}
+
+.card-header {
+    background-color: #23272a; /* Cabecera ligeramente más oscura */
+    border-radius: 10px 10px 0 0;
+    color: #ffffff; /* Texto blanco */
+}
+
+.card-body {
+    border-radius: 0 0 10px 10px;
+    background-color: #2f3136; /* Color de fondo similar a Discord */
+}
+
+hr.bg-light {
+    border-top: 1px solid #f8f9fa;
+}

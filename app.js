@@ -20,15 +20,13 @@ app.use('/assets', express.static(path.join(__dirname, 'assets')));
 // Middleware para parsear el cuerpo de las solicitudes HTTP
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Lista negra simulada de IPs
-const listaNegraIPs = [
-    "104.16.241.118",
-    "76.76.21.142",
-    "172.66.41.24"
-];
+// Lista negra simulada de IPs y dominios
+const listaNegraIPs = ["104.16.241.118", "76.76.21.142", "172.66.41.24"];
+const listaNegraDominios = ["example.com", "malicious.com"];
+const listaNegraUsuarios = ["baduser"];
 
 // Función para evaluar el riesgo de un subdominio
-function evaluarRiesgo(subdominio) {
+function evaluarRiesgoSubdominio(subdominio) {
     let riesgo = 1;  // Riesgo mínimo por defecto
 
     if (listaNegraIPs.includes(subdominio.ip)) {
@@ -37,6 +35,45 @@ function evaluarRiesgo(subdominio) {
 
     if (subdominio.cloudflare) {
         riesgo -= 2;
+    }
+
+    riesgo = Math.max(riesgo, 1);
+    const nivelesDeRiesgo = ['Muy Baja', 'Baja', 'Media', 'Media-Alta', 'Alta', 'Muy Alta'];
+    return nivelesDeRiesgo[Math.min(riesgo, nivelesDeRiesgo.length - 1)];
+}
+
+// Función para evaluar el riesgo de un correo electrónico
+function evaluarRiesgoCorreo(correo) {
+    let riesgo = 1;  // Riesgo mínimo por defecto
+
+    if (listaNegraDominios.includes(correo.domain)) {
+        riesgo += 4;
+    }
+
+    riesgo = Math.max(riesgo, 1);
+    const nivelesDeRiesgo = ['Muy Baja', 'Baja', 'Media', 'Media-Alta', 'Alta', 'Muy Alta'];
+    return nivelesDeRiesgo[Math.min(riesgo, nivelesDeRiesgo.length - 1)];
+}
+
+// Función para evaluar el riesgo de una cuenta
+function evaluarRiesgoCuenta(cuenta) {
+    let riesgo = 1;  // Riesgo mínimo por defecto
+
+    if (listaNegraUsuarios.includes(cuenta.username)) {
+        riesgo += 4;
+    }
+
+    riesgo = Math.max(riesgo, 1);
+    const nivelesDeRiesgo = ['Muy Baja', 'Baja', 'Media', 'Media-Alta', 'Alta', 'Muy Alta'];
+    return nivelesDeRiesgo[Math.min(riesgo, nivelesDeRiesgo.length - 1)];
+}
+
+// Función para evaluar el riesgo de un host
+function evaluarRiesgoHost(host) {
+    let riesgo = 1;  // Riesgo mínimo por defecto
+
+    if (listaNegraIPs.includes(host.ip)) {
+        riesgo += 4;
     }
 
     riesgo = Math.max(riesgo, 1);
@@ -64,7 +101,7 @@ app.post('/buscar', async (req, res) => {
 
         const subdominios = respuesta.data.subdomains.map(sub => ({
             ...sub,
-            riesgo: evaluarRiesgo(sub)
+            riesgo: evaluarRiesgoSubdominio(sub)
         }));
 
         res.render('resultados', { subdominios, dominio });
@@ -81,9 +118,12 @@ app.post('/buscar-correos', async (req, res) => {
 
     try {
         const respuesta = await axios.get(url);
-        const datosCorreo = respuesta.data.data;
+        const correos = respuesta.data.data.emails.map(email => ({
+            ...email,
+            riesgo: evaluarRiesgoCorreo(email)
+        }));
 
-        res.render('correos_resultados', { datosCorreo, dominio });
+        res.render('correos_resultados', { correos, dominio });
     } catch (error) {
         console.error('Error al buscar correos electrónicos:', error);
         res.status(500).send('Error en el servidor');
@@ -120,9 +160,47 @@ app.post('/buscar-enlaces-sociales', async (req, res) => {
 
     try {
         const enlacesSociales = await obtenerEnlacesSociales(query);
-        res.render('enlaces_sociales_resultados', { enlacesSociales, query });
+        const cuentas = Object.keys(enlacesSociales).map(red => enlacesSociales[red].map(enlace => ({
+            red,
+            enlace,
+            riesgo: evaluarRiesgoCuenta({ username: query })
+        }))).flat();
+
+        res.render('enlaces_sociales_resultados', { cuentas, query });
     } catch (error) {
         console.error('Error al buscar enlaces de redes sociales:', error);
+        res.status(500).send('Error en el servidor');
+    }
+});
+
+// Función para buscar datos de Who-Hosts-This
+async function obtenerHostData(url) {
+    const apiKey = 'wpztqdx13ykfuo12f2ip0djou86gctm4hx1erl2r5clmmguj5e9vatkj7f40ixfaxhvu3z';
+    const apiUrl = `https://www.who-hosts-this.com/API/Host?key=${apiKey}&url=${url}`;
+
+    try {
+        const response = await axios.get(apiUrl);
+        return response.data;
+    } catch (error) {
+        console.error('Error al buscar datos de Who-Hosts-This:', error);
+        throw error;
+    }
+}
+
+// Ruta para buscar datos de Who-Hosts-This
+app.post('/buscar-host', async (req, res) => {
+    const url = req.body.url;
+
+    try {
+        const hostData = await obtenerHostData(url);
+        const hosts = hostData.results.map(host => ({
+            ...host,
+            riesgo: evaluarRiesgoHost(host)
+        }));
+
+        res.render('host_resultados', { hosts, url });
+    } catch (error) {
+        console.error('Error al buscar datos de Who-Hosts-This:', error);
         res.status(500).send('Error en el servidor');
     }
 });
@@ -149,7 +227,7 @@ app.get('/buscar', (req, res) => {
         .then(response => {
             const subdominios = response.data.subdomains.map(sub => ({
                 ...sub,
-                riesgo: evaluarRiesgo(sub)
+                riesgo: evaluarRiesgoSubdominio(sub)
             }));
             res.render('resultados', { subdominios, dominio });
         })
@@ -166,4 +244,3 @@ app.get('/buscar', (req, res) => {
 app.listen(3000, () => {
     console.log('Servidor corriendo en http://localhost:3000');
 });
-//holi test

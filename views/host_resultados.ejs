@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados del Host</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/styles/styles.css">
+</head>
+<body class="bg-dark text-light">
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Resultados del Host para <%= url %></h1>
+        <div class="card mb-3">
+            <div class="card-header bg-primary text-white">Resultados</div>
+            <div class="card-body bg-secondary text-light">
+                <% hosts.forEach(function(host) { %>
+                    <p><strong>IP:</strong> <%= host.ip %></p>
+                    <p><strong>Tipo:</strong> <%= host.type %></p>
+                    <p><strong>ISP:</strong> <%= host.isp_name %> (<a href="<%= host.isp_url %>" target="_blank" class="text-info">Más información</a>)</p>
+                    <p><strong>Riesgo:</strong> <span class="text-<%= host.riesgo %>"><%= host.riesgo %></span></p>
+                    <hr class="bg-light">
+                <% }) %>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <a href="/" class="btn btn-primary">Volver a la Búsqueda</a>
+        </div>
+    </div>
+</body>
+</html>
+
+

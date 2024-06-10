@@ -14,7 +14,8 @@
         <div class="text-center mb-4">
             <label class="mr-2 text-light"><input type="radio" name="searchType" value="subdominios"> Subdominios</label>
             <label class="mr-2 text-light"><input type="radio" name="searchType" value="correos"> Correos Electrónicos</label>
-            <label class="text-light"><input type="radio" name="searchType" value="cuentas"> Cuentas</label>
+            <label class="mr-2 text-light"><input type="radio" name="searchType" value="cuentas"> Cuentas</label>
+            <label class="text-light"><input type="radio" name="searchType" value="host"> Host</label>
         </div>
 
         <form id="subdominiosForm" action="/buscar" method="post" class="text-center" style="display:none;">
@@ -37,6 +38,13 @@
             </div>
             <button type="submit" class="btn btn-primary">Buscar Cuentas</button>
         </form>
+
+        <form id="hostForm" action="/buscar-host" method="post" class="text-center" style="display:none;">
+            <div class="form-group">
+                <input type="text" name="url" class="form-control" placeholder="Ingrese la URL" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar Host</button>
+        </form>
     </div>
 
     <script>
@@ -45,6 +53,7 @@
                 document.getElementById("subdominiosForm").style.display = "none";
                 document.getElementById("correosForm").style.display = "none";
                 document.getElementById("cuentasForm").style.display = "none";
+                document.getElementById("hostForm").style.display = "none";
                 
                 if (this.value === "subdominios") {
                     document.getElementById("subdominiosForm").style.display = "block";
@@ -52,12 +61,15 @@
                     document.getElementById("correosForm").style.display = "block";
                 } else if (this.value === "cuentas") {
                     document.getElementById("cuentasForm").style.display = "block";
+                } else if (this.value === "host") {
+                    document.getElementById("hostForm").style.display = "block";
                 }
             });
         });
     </script>
 </body>
 </html>
+
 
 
 

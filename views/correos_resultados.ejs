@@ -6,32 +6,18 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/styles/styles.css">
 </head>
-<body class="bg-light">
+<body class="bg-dark text-light">
     <div class="container mt-5">
         <h1 class="text-center mb-4">Correos Electrónicos para <%= dominio %></h1>
-        <% if (datosCorreo && datosCorreo.emails && datosCorreo.emails.length > 0) { %>
-            <ul class="list-group">
-                <% datosCorreo.emails.forEach(function(email) { %>
-                    <li class="list-group-item">
-                        <strong>Email:</strong> <%= email.value %><br>
-                        <strong>Confianza:</strong> <%= email.confidence %><br>
-                        <strong>Posición:</strong> <%= email.position %><br>
-                        <strong>Departamento:</strong> <%= email.department %><br>
-                        <strong>Verificación:</strong> <%= email.verification.status %><br>
-                        <strong>Fuentes:</strong>
-                        <ul>
-                            <% email.sources.forEach(function(source) { %>
-                                <li><a href="<%= source.uri %>"><%= source.domain %></a> - Extraído el: <%= source.extracted_on %></li>
-                            <% }) %>
-                        </ul>
-                    </li>
-                <% }) %>
-            </ul>
-        <% } else { %>
-            <p>No se encontraron resultados.</p>
-        <% } %>
+        <ul class="list-group">
+            <% correos.forEach(function(correo) { %>
+                <li class="list-group-item bg-secondary text-light">
+                    <%= correo.value %> - Riesgo: <span class="text-<%= correo.riesgo %>"><%= correo.riesgo %></span>
+                </li>
+            <% }) %>
+        </ul>
         <div class="text-center mt-4">
-            <a href="/" class="btn btn-secondary">Volver</a>
+            <a href="/" class="btn btn-primary">Volver a la Búsqueda</a>
         </div>
     </div>
 </body>
