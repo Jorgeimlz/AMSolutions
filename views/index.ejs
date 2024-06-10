@@ -6,15 +6,64 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/styles/styles.css">
 </head>
-<body class="bg-light">
-    <div class="container mt-5">
-        <h1 class="text-center mb-4">Buscador de Subdominios</h1>
-        <form action="/buscar" method="post" class="text-center">
+<body>
+    <div class="container mt-5 text-center">
+        <img src="/assets/logo.png" alt="AMSolutions Logo" class="mb-4" style="width: 300px; height: auto;">
+        <h1 class="text-center mb-4">AMSolutions</h1>
+        
+        <div class="text-center mb-4">
+            <label class="mr-2 text-light"><input type="radio" name="searchType" value="subdominios"> Subdominios</label>
+            <label class="mr-2 text-light"><input type="radio" name="searchType" value="correos"> Correos Electrónicos</label>
+            <label class="text-light"><input type="radio" name="searchType" value="cuentas"> Cuentas</label>
+        </div>
+
+        <form id="subdominiosForm" action="/buscar" method="post" class="text-center" style="display:none;">
             <div class="form-group">
                 <input type="text" name="dominio" class="form-control" placeholder="Ingrese el dominio" required>
             </div>
-            <button type="submit" class="btn btn-primary">Enviar</button>
+            <button type="submit" class="btn btn-primary">Buscar Subdominios</button>
+        </form>
+
+        <form id="correosForm" action="/buscar-correos" method="post" class="text-center" style="display:none;">
+            <div class="form-group">
+                <input type="text" name="dominio" class="form-control" placeholder="Ingrese el dominio" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar Correos</button>
+        </form>
+
+        <form id="cuentasForm" action="/buscar-enlaces-sociales" method="post" class="text-center" style="display:none;">
+            <div class="form-group">
+                <input type="text" name="query" class="form-control" placeholder="Ingrese el nombre" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar Cuentas</button>
         </form>
     </div>
+
+    <script>
+        document.querySelectorAll('input[name="searchType"]').forEach((elem) => {
+            elem.addEventListener("change", function(event) {
+                document.getElementById("subdominiosForm").style.display = "none";
+                document.getElementById("correosForm").style.display = "none";
+                document.getElementById("cuentasForm").style.display = "none";
+                
+                if (this.value === "subdominios") {
+                    document.getElementById("subdominiosForm").style.display = "block";
+                } else if (this.value === "correos") {
+                    document.getElementById("correosForm").style.display = "block";
+                } else if (this.value === "cuentas") {
+                    document.getElementById("cuentasForm").style.display = "block";
+                }
+            });
+        });
+    </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+

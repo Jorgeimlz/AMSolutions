@@ -1,17 +1,56 @@
 body {
-    background-color: #f8f9fa;
+    background-color: #36393f; /* Discord dark background color */
+    color: #ffffff; /* Discord text color */
+    font-family: Arial, sans-serif;
 }
 
 h1 {
-    color: #343a40;
+    color: #7289da; /* Discord blurple color */
+}
+
+.btn-primary {
+    background-color: #7289da; /* Discord blurple color */
+    border-color: #7289da; /* Discord blurple color */
+    color: #ffffff; /* White text */
+}
+
+.btn-primary:hover {
+    background-color: #5b6eae; /* Darker blurple on hover */
+    border-color: #5b6eae; /* Darker blurple on hover */
+}
+
+.form-control {
+    background-color: #40444b; /* Discord input background color */
+    color: #ffffff; /* White text */
+    border: 1px solid #2f3136; /* Border color similar to Discord */
+}
+
+.form-control::placeholder {
+    color: #b9bbbe; /* Placeholder text color */
+}
+
+label {
+    color: #b9bbbe; /* Label text color */
+}
+
+.list-group-item {
+    background-color: #2f3136; /* List item background color */
+    border: 1px solid #23272a; /* Border color for list items */
+}
+
+.list-group-item a {
+    color: #7289da; /* Link color */
+}
+
+.list-group-item a:hover {
+    color: #5b6eae; /* Darker blurple on hover */
 }
 
 .risk {
     cursor: pointer;
 }
 
-/* Estilo adicional para cambiar el cursor */
 .risk:hover {
-    cursor: pointer;
-    text-decoration: underline;  /* Opcional: añade un subrayado al pasar el mouse */
+    text-decoration: underline;
 }
+

@@ -74,6 +74,59 @@ app.post('/buscar', async (req, res) => {
     }
 });
 
+// Ruta para buscar correos electrónicos de un dominio usando Hunter.io
+app.post('/buscar-correos', async (req, res) => {
+    const dominio = req.body.dominio;
+    const url = `https://api.hunter.io/v2/domain-search?domain=${dominio}&api_key=${process.env.HUNTER_API_KEY}`;
+
+    try {
+        const respuesta = await axios.get(url);
+        const datosCorreo = respuesta.data.data;
+
+        res.render('correos_resultados', { datosCorreo, dominio });
+    } catch (error) {
+        console.error('Error al buscar correos electrónicos:', error);
+        res.status(500).send('Error en el servidor');
+    }
+});
+
+// Función para buscar enlaces de redes sociales
+async function obtenerEnlacesSociales(query) {
+    const options = {
+        method: 'GET',
+        url: 'https://social-links-search.p.rapidapi.com/search-social-links',
+        params: {
+            query: query,
+            social_networks: 'facebook,tiktok,instagram,snapchat,twitter,youtube,linkedin,github,pinterest'
+        },
+        headers: {
+            'x-rapidapi-key': process.env.RAPIDAPI_KEY,
+            'x-rapidapi-host': 'social-links-search.p.rapidapi.com'
+        }
+    };
+
+    try {
+        const response = await axios.request(options);
+        return response.data.data;
+    } catch (error) {
+        console.error('Error al buscar enlaces de redes sociales:', error);
+        throw error;
+    }
+}
+
+// Ruta para buscar enlaces de redes sociales
+app.post('/buscar-enlaces-sociales', async (req, res) => {
+    const query = req.body.query;
+
+    try {
+        const enlacesSociales = await obtenerEnlacesSociales(query);
+        res.render('enlaces_sociales_resultados', { enlacesSociales, query });
+    } catch (error) {
+        console.error('Error al buscar enlaces de redes sociales:', error);
+        res.status(500).send('Error en el servidor');
+    }
+});
+
 // Ruta para mostrar detalles del riesgo
 app.get('/riesgo/:nivel/:dominio', (req, res) => {
     const nivel = req.params.nivel;

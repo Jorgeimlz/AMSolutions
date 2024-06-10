@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados de Enlaces de Redes Sociales</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/styles/styles.css">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Enlaces de Redes Sociales para <%= query %></h1>
+        <% if (enlacesSociales && Object.keys(enlacesSociales).length > 0) { %>
+            <% for (let redSocial in enlacesSociales) { %>
+                <h3><%= redSocial %></h3>
+                <% if (Array.isArray(enlacesSociales[redSocial]) && enlacesSociales[redSocial].length > 0) { %>
+                    <ul class="list-group">
+                        <% enlacesSociales[redSocial].forEach(function(enlace) { %>
+                            <li class="list-group-item">
+                                <a href="<%= enlace %>"><%= enlace %></a>
+                            </li>
+                        <% }) %>
+                    </ul>
+                <% } else { %>
+                    <p>No se encontraron resultados para <%= redSocial %>.</p>
+                <% } %>
+            <% } %>
+        <% } else { %>
+            <p>No se encontraron resultados.</p>
+        <% } %>
+        <div class="text-center mt-4">
+            <a href="/" class="btn btn-secondary">Volver</a>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
