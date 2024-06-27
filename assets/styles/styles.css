@@ -1,7 +1,30 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background-color: #000000 !important; /* Fondo negro */
     color: #ffffff !important; /* Color de texto blanco */
     font-family: Arial, sans-serif !important;
+}
+
+.container {
+    min-height: 100%; /* Altura mínima del 100% */
+    position: relative;
+    padding-bottom: 50px; /* Espacio adicional en la parte inferior para el footer */
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%; /* Anchura completa */
+    height: 50px; /* Altura del footer */
+    background-color: #23272a; /* Un poco más oscuro que el fondo principal para diferenciar el footer */
+    color: #7289da; /* Usando el color blurple para mantener la coherencia */
+    text-align: center; /* Centrar el texto del footer */
+    line-height: 50px; /* Alineación vertical del texto en el footer */
 }
 
 h1 {
@@ -10,13 +33,13 @@ h1 {
 
 .btn-primary {
     background-color: #7289da !important; /* Color blurple de Discord */
-    border-color: #7289da !important; /* Color blurple de Discord */
+    border-color: #7289da !important;
     color: #ffffff !important; /* Texto blanco */
 }
 
 .btn-primary:hover {
     background-color: #5b6eae !important; /* Blurple más oscuro al pasar el ratón */
-    border-color: #5b6eae !important; /* Blurple más oscuro al pasar el ratón */
+    border-color: #5b6eae !important;
 }
 
 .form-control {
@@ -66,15 +89,15 @@ label {
 }
 
 .card-header {
-    background-color: #000000 !important; /* Fondo negro */
+    background-color: #000000 !important;
     border-radius: 10px 10px 0 0 !important;
-    color: #ffffff !important; /* Texto blanco */
+    color: #ffffff !important;
 }
 
 .card-body {
     border-radius: 0 0 10px 10px !important;
-    background-color: #000000 !important; /* Fondo negro */
-    color: #ffffff !important; /* Texto blanco */
+    background-color: #000000 !important;
+    color: #ffffff !important;
 }
 
 hr.bg-light {
