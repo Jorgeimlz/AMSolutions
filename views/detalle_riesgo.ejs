@@ -6,12 +6,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/styles/styles.css">
 </head>
-<body class="bg-light">
-    <div class="container mt-5">
+<body style="background-color: #000000; color: #ffffff;">
+    <div class="container mt-5" style="background-color: #000000; color: #ffffff;">
         <h1 class="text-center mb-4">Detalle del Riesgo - <%= nivel %></h1>
         <% if (nivel === 'Muy Alta') { %>
-            <table class="table table-bordered">
-                <thead>
+            <table class="table table-bordered" style="background-color: #000000; color: #ffffff;">
+                <thead class="bg-dark text-light">
                     <tr>
                         <th>Valor</th>
                         <th>Probabilidad de Incidente</th>
@@ -29,8 +29,8 @@
                 </tbody>
             </table>
         <% } else if (nivel === 'Alta') { %>
-            <table class="table table-bordered">
-                <thead>
+            <table class="table table-bordered" style="background-color: #000000; color: #ffffff;">
+                <thead class="bg-dark text-light">
                     <tr>
                         <th>Valor</th>
                         <th>Probabilidad de Incidente</th>
@@ -48,8 +48,8 @@
                 </tbody>
             </table>
         <% } else if (nivel === 'Media-Alta') { %>
-            <table class="table table-bordered">
-                <thead>
+            <table class="table table-bordered" style="background-color: #000000; color: #ffffff;">
+                <thead class="bg-dark text-light">
                     <tr>
                         <th>Valor</th>
                         <th>Probabilidad de Incidente</th>
@@ -67,8 +67,8 @@
                 </tbody>
             </table>
         <% } else if (nivel === 'Media') { %>
-            <table class="table table-bordered">
-                <thead>
+            <table class="table table-bordered" style="background-color: #000000; color: #ffffff;">
+                <thead class="bg-dark text-light">
                     <tr>
                         <th>Valor</th>
                         <th>Probabilidad de Incidente</th>
@@ -86,8 +86,8 @@
                 </tbody>
             </table>
         <% } else if (nivel === 'Baja') { %>
-            <table class="table table-bordered">
-                <thead>
+            <table class="table table-bordered" style="background-color: #000000; color: #ffffff;">
+                <thead class="bg-dark text-light">
                     <tr>
                         <th>Valor</th>
                         <th>Probabilidad de Incidente</th>
@@ -105,8 +105,8 @@
                 </tbody>
             </table>
         <% } else if (nivel === 'Muy Baja') { %>
-            <table class="table table-bordered">
-                <thead>
+            <table class="table table-bordered" style="background-color: #000000; color: #ffffff;">
+                <thead class="bg-dark text-light">
                     <tr>
                         <th>Valor</th>
                         <th>Probabilidad de Incidente</th>
@@ -125,8 +125,9 @@
             </table>
         <% } %>
         <div class="text-center mt-4">
-            <a href="/buscar?dominio=<%= dominio %>" class="btn btn-secondary">Volver a la búsqueda</a>
+            <button class="btn btn-secondary" onclick="window.history.back()">Volver a la búsqueda</button>
         </div>
     </div>
 </body>
 </html>
+

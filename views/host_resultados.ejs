@@ -6,17 +6,21 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/styles/styles.css">
 </head>
-<body class="bg-dark text-light">
+<body style="background-color: #000000; color: #ffffff;">
     <div class="container mt-5">
         <h1 class="text-center mb-4">Resultados del Host para <%= url %></h1>
-        <div class="card mb-3">
-            <div class="card-header bg-primary text-white">Resultados</div>
-            <div class="card-body bg-secondary text-light">
+        <div class="card mb-3" style="background-color: #000000; color: #ffffff;">
+            <div class="card-header" style="background-color: #000000; color: #ffffff;">Resultados</div>
+            <div class="card-body" style="background-color: #000000; color: #ffffff;">
                 <% hosts.forEach(function(host) { %>
-                    <p><strong>IP:</strong> <%= host.ip %></p>
-                    <p><strong>Tipo:</strong> <%= host.type %></p>
-                    <p><strong>ISP:</strong> <%= host.isp_name %> (<a href="<%= host.isp_url %>" target="_blank" class="text-info">Más información</a>)</p>
-                    <p><strong>Riesgo:</strong> <span class="text-<%= host.riesgo %>"><%= host.riesgo %></span></p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <p><strong>IP:</strong> <%= host.ip %></p>
+                            <p><strong>Tipo:</strong> <%= host.type %></p>
+                            <p><strong>ISP:</strong> <%= host.isp_name %> (<a href="<%= host.isp_url %>" target="_blank" class="text-info">Más información</a>)</p>
+                        </div>
+                        <button class="btn btn-primary risk" data-risk="<%= host.riesgo %>" data-url="<%= url %>">Riesgo: <%= host.riesgo %></button>
+                    </div>
                     <hr class="bg-light">
                 <% }) %>
             </div>
@@ -25,7 +29,17 @@
             <a href="/" class="btn btn-primary">Volver a la Búsqueda</a>
         </div>
     </div>
+    <script>
+        document.querySelectorAll('.risk').forEach(element => {
+            element.addEventListener('click', () => {
+                const nivel = element.getAttribute('data-risk');
+                const url = element.getAttribute('data-url');
+                // Encodes the URL to ensure it is correctly formatted
+                const encodedUrl = encodeURIComponent(url);
+                window.location.href = `/riesgo/${nivel}/${encodedUrl}`;
+            });
+        });
+    </script>
+    
 </body>
 </html>
-
-

@@ -6,13 +6,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/styles/styles.css">
 </head>
-<body class="bg-dark text-light">
+<body style="background-color: #000000; color: #ffffff;">
     <div class="container mt-5">
         <h1 class="text-center mb-4">Correos Electrónicos para <%= dominio %></h1>
         <ul class="list-group">
             <% correos.forEach(function(correo) { %>
-                <li class="list-group-item bg-secondary text-light">
-                    <%= correo.value %> - Riesgo: <span class="text-<%= correo.riesgo %>"><%= correo.riesgo %></span>
+                <li class="list-group-item d-flex justify-content-between align-items-center" style="background-color: #000000; color: #ffffff;">
+                    <span><%= correo.value %></span>
+                    <button class="btn btn-primary risk" data-risk="<%= correo.riesgo %>" data-dominio="<%= dominio %>">Riesgo: <%= correo.riesgo %></button>
                 </li>
             <% }) %>
         </ul>
@@ -20,8 +21,15 @@
             <a href="/" class="btn btn-primary">Volver a la Búsqueda</a>
         </div>
     </div>
+
+    <script>
+        document.querySelectorAll('.risk').forEach(element => {
+            element.addEventListener('click', () => {
+                const nivel = element.getAttribute('data-risk');
+                const dominio = element.getAttribute('data-dominio');
+                window.location.href = `/riesgo/${nivel}/${dominio}`;
+            });
+        });
+    </script>
 </body>
 </html>
-
-
-

@@ -6,13 +6,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/styles/styles.css">
 </head>
-<body class="bg-dark text-light">
+<body style="background-color: #000000; color: #ffffff;">
     <div class="container mt-5">
         <h1 class="text-center mb-4">Cuentas para <%= query %></h1>
         <ul class="list-group">
             <% cuentas.forEach(function(cuenta) { %>
-                <li class="list-group-item bg-secondary text-light">
-                    <%= cuenta.red %>: <a href="<%= cuenta.enlace %>" class="text-info"><%= cuenta.enlace %></a> - Riesgo: <span class="text-<%= cuenta.riesgo %>"><%= cuenta.riesgo %></span>
+                <li class="list-group-item d-flex justify-content-between align-items-center" style="background-color: #000000; color: #ffffff;">
+                    <span><%= cuenta.red %>: <a href="<%= cuenta.enlace %>" class="text-info"><%= cuenta.enlace %></a></span>
+                    <button class="btn btn-primary risk" data-risk="<%= cuenta.riesgo %>" data-query="<%= query %>">Riesgo: <%= cuenta.riesgo %></button>
                 </li>
             <% }) %>
         </ul>
@@ -20,10 +21,17 @@
             <a href="/" class="btn btn-primary">Volver a la Búsqueda</a>
         </div>
     </div>
+
+    <script>
+        document.querySelectorAll('.risk').forEach(element => {
+            element.addEventListener('click', () => {
+                const nivel = element.getAttribute('data-risk');
+                const query = element.getAttribute('data-query');
+                window.location.href = `/riesgo/${nivel}/${query}`;
+            });
+        });
+    </script>
 </body>
 </html>
-
-
-
 
 

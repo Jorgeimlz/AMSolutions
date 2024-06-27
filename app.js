@@ -205,12 +205,16 @@ app.post('/buscar-host', async (req, res) => {
     }
 });
 
+
+
 // Ruta para mostrar detalles del riesgo
 app.get('/riesgo/:nivel/:dominio', (req, res) => {
     const nivel = req.params.nivel;
-    const dominio = req.params.dominio;
+    const dominio = decodeURIComponent(req.params.dominio);
     res.render('detalle_riesgo', { nivel: nivel, dominio: dominio });
 });
+
+
 
 // Ruta para volver a la búsqueda con el dominio anterior
 app.get('/buscar', (req, res) => {

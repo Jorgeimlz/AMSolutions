@@ -1,79 +1,82 @@
 body {
-    background-color: #000000; /* Fondo oscuro de Discord */
-    color: #ffffff; /* Color de texto de Discord */
-    font-family: Arial, sans-serif;
+    background-color: #000000 !important; /* Fondo negro */
+    color: #ffffff !important; /* Color de texto blanco */
+    font-family: Arial, sans-serif !important;
 }
 
 h1 {
-    color: #7289da; /* Color blurple de Discord */
+    color: #7289da !important; /* Color blurple de Discord */
 }
 
 .btn-primary {
-    background-color: #7289da; /* Color blurple de Discord */
-    border-color: #7289da; /* Color blurple de Discord */
-    color: #ffffff; /* Texto blanco */
+    background-color: #7289da !important; /* Color blurple de Discord */
+    border-color: #7289da !important; /* Color blurple de Discord */
+    color: #ffffff !important; /* Texto blanco */
 }
 
 .btn-primary:hover {
-    background-color: #5b6eae; /* Blurple más oscuro al pasar el ratón */
-    border-color: #5b6eae; /* Blurple más oscuro al pasar el ratón */
+    background-color: #5b6eae !important; /* Blurple más oscuro al pasar el ratón */
+    border-color: #5b6eae !important; /* Blurple más oscuro al pasar el ratón */
 }
 
 .form-control {
-    background-color: #000000; /* Fondo negro */
-    color: #ffffff; /* Texto blanco */
-    border: 1px solid #7289da; /* Borde blurple de Discord */
-    box-shadow: 0 0 5px rgba(114, 137, 218, 0.5); /* Sombra blurple para destacar */
+    background-color: #000000 !important; /* Fondo negro */
+    color: #ffffff !important; /* Texto blanco */
+    border: 1px solid #7289da !important; /* Borde blurple de Discord */
+    box-shadow: 0 0 5px rgba(114, 137, 218, 0.5) !important; /* Sombra blurple para destacar */
 }
 
 .form-control::placeholder {
-    color: #b9bbbe; /* Color del texto del marcador de posición */
+    color: #b9bbbe !important; /* Color del texto del marcador de posición */
 }
 
 label {
-    color: #b9bbbe; /* Color del texto de las etiquetas */
+    color: #b9bbbe !important; /* Color del texto de las etiquetas */
 }
 
 .list-group-item {
-    background-color: #2f3136; /* Color de fondo de los elementos de la lista */
-    border: 1px solid #23272a; /* Color del borde de los elementos de la lista */
+    background-color: #000000 !important; /* Fondo negro */
+    border: 1px solid #23272a !important; /* Color del borde de los elementos de la lista */
+    color: #ffffff !important; /* Texto blanco */
 }
 
 .list-group-item a {
-    color: #7289da; /* Color de los enlaces */
+    color: #7289da !important; /* Color de los enlaces */
 }
 
 .list-group-item a:hover {
-    color: #5b6eae; /* Blurple más oscuro al pasar el ratón */
+    color: #5b6eae !important; /* Blurple más oscuro al pasar el ratón */
 }
 
 .risk {
-    cursor: pointer;
+    cursor: pointer !important;
+    color: #ffffff !important; /* Texto blanco */
 }
 
 .risk:hover {
-    text-decoration: underline;
+    text-decoration: underline !important;
 }
 
 .card {
-    border: none;
-    border-radius: 10px;
-    background-color: #2f3136; /* Color de fondo similar a Discord */
-    color: #ffffff; /* Texto blanco */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra para la tarjeta */
+    border: none !important;
+    border-radius: 10px !important;
+    background-color: #000000 !important; /* Fondo negro */
+    color: #ffffff !important; /* Texto blanco */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) !important; /* Sombra para la tarjeta */
 }
 
 .card-header {
-    background-color: #23272a; /* Cabecera ligeramente más oscura */
-    border-radius: 10px 10px 0 0;
-    color: #ffffff; /* Texto blanco */
+    background-color: #000000 !important; /* Fondo negro */
+    border-radius: 10px 10px 0 0 !important;
+    color: #ffffff !important; /* Texto blanco */
 }
 
 .card-body {
-    border-radius: 0 0 10px 10px;
-    background-color: #2f3136; /* Color de fondo similar a Discord */
+    border-radius: 0 0 10px 10px !important;
+    background-color: #000000 !important; /* Fondo negro */
+    color: #ffffff !important; /* Texto blanco */
 }
 
 hr.bg-light {
-    border-top: 1px solid #f8f9fa;
+    border-top: 1px solid #f8f9fa !important;
 }
