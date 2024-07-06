@@ -205,6 +205,41 @@ app.post('/buscar-host', async (req, res) => {
     }
 });
 
+app.post('/buscar-serper', async (req, res) => {
+    const query = req.body.query;
+    const url = 'https://google.serper.dev/search';
+
+    const data = JSON.stringify({ "q": query });
+
+    const config = {
+        method: 'post',
+        url: url,
+        headers: { 
+            'X-API-KEY': process.env.SERPER_API_KEY, 
+            'Content-Type': 'application/json'
+        },
+        data : data
+    };
+
+    try {
+        const response = await axios(config);
+        console.log(response.data); // Añade esta línea para ver los datos devueltos por la API en la consola
+        let resultados = [];
+
+        // Ajuste basado en la estructura real de los datos devueltos por la API
+        if (response.data && Array.isArray(response.data.organic)) {
+            resultados = response.data.organic.map(item => ({
+                title: item.title,
+                link: item.link
+            }));
+        }
+
+        res.render('serper_resultados', { resultados, query });
+    } catch (error) {
+        console.error('Error al buscar con Serper.dev:', error);
+        res.status(500).send('Error en el servidor');
+    }
+});
 
 
 // Ruta para mostrar detalles del riesgo
@@ -213,8 +248,6 @@ app.get('/riesgo/:nivel/:dominio', (req, res) => {
     const dominio = decodeURIComponent(req.params.dominio);
     res.render('detalle_riesgo', { nivel: nivel, dominio: dominio });
 });
-
-
 
 // Ruta para volver a la búsqueda con el dominio anterior
 app.get('/buscar', (req, res) => {
